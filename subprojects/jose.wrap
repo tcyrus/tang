@@ -1,0 +1,6 @@
+[wrap-git]
+url = https://github.com/tcyrus/jose.git
+revision = meson-fixes
+
+[provide]
+jose = libjose_dep

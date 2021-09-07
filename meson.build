@@ -2,7 +2,7 @@ project('tang', 'c',
   version: '10',
   license: 'GPL3+',
   default_options: [
-    'c_std=c99',
+    'c_std=gnu99',
     'prefix=/usr',
     'sysconfdir=/etc',
     'localstatedir=/var',
@@ -28,7 +28,6 @@ data.set('systemunitdir', systemunitdir)
 data.set('jwkdir', jwkdir)
 
 add_project_arguments(
-  '-D_POSIX_C_SOURCE=200809L',
   '-Wstrict-aliasing',
   '-Wchar-subscripts',
   '-Wformat',
@@ -51,10 +50,10 @@ add_project_arguments(
 jose = dependency('jose', version: '>=8')
 a2x = find_program('a2x', required: false)
 compiler = meson.get_compiler('c')
-if not compiler.has_header('http_parser.h',args : '-I/usr/local/include')
+if not compiler.has_header('http_parser.h', args: '-I/usr/local/include')
   error('http-parser devel files not found.')
 endif
-http_parser = compiler.find_library('http_parser',dirs:['/usr/lib','/usr/local/lib'])
+http_parser = compiler.find_library('http_parser', dirs: ['/usr/lib','/usr/local/lib'])
 
 licenses = ['COPYING']
 libexecbins = []

@@ -15,7 +15,10 @@ test_keys = executable('test-keys',
   test_keys_c,
   'test-util.c',
   dependencies: [jose],
-  include_directories: incdir
+  include_directories: incdir,
+  c_args: [
+    '-D_POSIX_C_SOURCE=200809L',
+  ]
 )
 
 socat = find_program(
