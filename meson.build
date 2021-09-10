@@ -7,7 +7,8 @@ project('tang', 'c',
     'sysconfdir=/etc',
     'localstatedir=/var',
     'warning_level=3',
-    'werror=true'
+    'werror=true',
+    'default_library=static'
   ]
 )
 
@@ -47,13 +48,13 @@ add_project_arguments(
   language: 'c'
 )
 
-jose = dependency('jose', version: '>=8')
+jose = dependency('jose', static: true).as_link_whole()
 a2x = find_program('a2x', required: false)
 compiler = meson.get_compiler('c')
 if not compiler.has_header('http_parser.h', args: '-I/usr/local/include')
   error('http-parser devel files not found.')
 endif
-http_parser = compiler.find_library('http_parser', dirs: ['/usr/lib','/usr/local/lib'])
+http_parser = compiler.find_library('http_parser', dirs: ['/usr/lib','/usr/local/lib'], static: true)
 
 licenses = ['COPYING']
 libexecbins = []
