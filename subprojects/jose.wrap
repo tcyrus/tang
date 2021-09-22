@@ -1,6 +1,6 @@
 [wrap-git]
-url = https://github.com/tcyrus/jose.git
-revision = meson-fixes
+url = https://github.com/latchset/jose.git
+revision = master
 
 [provide]
 jose = libjose_dep
